@@ -528,7 +528,7 @@ class AutoQueue : public QueueBase<S> {
       VLOG(2) << "AutoQueue: using top-order discipline";
     } else if ((props & kUnweighted) && (Weight::Properties() & kIdempotent)) {
       queue_.reset(new LifoQueue<StateId>());
-      VLOG(2) << "AutoQueue: using LIFO discipline";
+      VLOG(2) << "AutoQueue 1: using LIFO discipline";
     } else {
       uint64 properties;
       // Decomposes into strongly-connected components.
@@ -550,7 +550,7 @@ class AutoQueue : public QueueBase<S> {
       // If unweighted and semiring is idempotent, uses LIFO queue.
       if (unweighted) {
         queue_.reset(new LifoQueue<StateId>());
-        VLOG(2) << "AutoQueue: using LIFO discipline";
+        VLOG(2) << "AutoQueue 2: using LIFO discipline";
         return;
       }
       // If all the SCC are trivial, the FST is acyclic and the scc number gives
