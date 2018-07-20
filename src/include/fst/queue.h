@@ -520,6 +520,8 @@ class AutoQueue : public QueueBase<S> {
     // First checks if the FST is known to have these properties.
     const auto props =
         fst.Properties(kAcyclic | kCyclic | kTopSorted | kUnweighted, false);
+
+    VLOG(2) << "fst.Start() - " << fst.Start();
     if ((props & kTopSorted) || fst.Start() == kNoStateId) {
       queue_.reset(new StateOrderQueue<StateId>());
       VLOG(2) << "AutoQueue: using state-order discipline";
